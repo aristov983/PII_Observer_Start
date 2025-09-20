@@ -8,7 +8,7 @@ namespace Ucu.Poo.Observer.Tests;
 /// Para hacer pruebas con un <see cref="TemperatureReporter"/> necesitamos un objeto <see cref="IObservable"/> por
 /// eso hacemos que la propia clase de prueba implemente esa interfaz.
 /// </summary>
-public class TemperatureReporterTests : ISubject
+public class TemperatureReporterTests : ISubject<Temperature>
 {
     private TemperatureReporter reporter;
     private bool isSubscribed = false;
@@ -24,7 +24,7 @@ public class TemperatureReporterTests : ISubject
     /// <see cref="TemperatureReporter.StartReporting(ISubject)"/>. El objeto <see cref="IObserver"/> que está
     /// interesado en los cambios es <see cref="ObservableTests.reporter"/>.
     /// </summary>
-    public void Subscribe(IObserver observer)
+    public void Subscribe(IObserver<Temperature> observer)
     {
         Assert.That(observer, Is.EqualTo(this.reporter));
         this.isSubscribed = true;
@@ -35,7 +35,7 @@ public class TemperatureReporterTests : ISubject
     /// <see cref="TemperatureReporter.StopReporting(ISubject)"/>. El objeto <see cref="IObserver"/> que está
     /// interesado en los cambios es <see cref="ObservableTests.reporter"/>.
     /// </summary>
-    public void Unsubscribe(IObserver observer)
+    public void Unsubscribe(IObserver<Temperature> observer)
     {
         Assert.That(observer, Is.EqualTo(this.reporter));
         this.isSubscribed = false;
